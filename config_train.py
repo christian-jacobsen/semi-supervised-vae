@@ -12,11 +12,11 @@ import torch
 
 def lr_schedule_0(epoch):
     # used for VAE w/out HP network
-    e0 = 10000
+    e0 = 18000
     if epoch < e0:
         return 0.001
     else:
-        return 0.005
+        return 0.0005
     
 def lr_schedule_1(epoch):
     # used for VAE w/ HP network (more sensitive to learning rate)
@@ -81,8 +81,8 @@ if HP:                      # specify the learning rate schedule
         
 else:
     lr_schedule = lr_schedule_0
-    epochs = 10000 # 6500
-    rec_epochs = 5000 # 4000
+    epochs = 20000 # 6500
+    rec_epochs = 10000 # 4000
 
 
 

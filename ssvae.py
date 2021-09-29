@@ -136,7 +136,7 @@ def last_decoding(in_features, out_channels, kernel_size, stride, padding,
 
 
 class ssvae(nn.Module):
-    def __init__(self, data_channels, initial_features, denseblocks, growth_rate, n_latent, prior = 'std_norm', activations = nn.ReLU()):
+    def __init__(self, data_channels, initial_features, denseblocks, growth_rate, n_latent, prior = 'std_norm', activations = nn.GELU()):
         """
         A VAE using convolutional dense blocks and convolutional encoding layers
         """

@@ -37,7 +37,7 @@ kle = 2
 ntrain = 512
 ntest = 512
 
-trial = 9
+trial = 17
 load_path = './DarcyFlow/p2/multimodal/ssvae/n2/VAE_{}'.format(trial)
 model_name = 'VAE_{}.pth'.format(trial)
 

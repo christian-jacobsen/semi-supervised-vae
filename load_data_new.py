@@ -4,7 +4,7 @@ import h5py
 from torch.utils.data import DataLoader, TensorDataset
 
 
-def load_data_new(data_dir, batch_size):
+def load_data_new(data_dir, batch_size, shuff = True):
     """Return data loader
 
     Args:
@@ -32,7 +32,7 @@ def load_data_new(data_dir, batch_size):
               'pin_memory': True} if torch.cuda.is_available() else {}
 
     dataset = TensorDataset(torch.tensor(z_data), torch.tensor(x_data), torch.tensor(y_data))
-    data_loader = DataLoader(dataset, batch_size=batch_size, shuffle=True, **kwargs)
+    data_loader = DataLoader(dataset, batch_size=batch_size, shuffle=shuff, **kwargs)
 
     # simple statistics of output data
     y_data_mean = np.mean(y_data, 0)

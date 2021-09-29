@@ -37,7 +37,7 @@ def ssvae_train(train_data_dir_u, train_data_dir_l, test_data_dir, save_dir, fil
     print(device)
        
     train_loader_u, train_stats_u = load_data_new(train_data_dir_u, batch_size_u) # unlabeled data
-    train_loader_l, train_stats_l = load_data_new(train_data_dir_l, batch_size_l) # labeled data    
+    train_loader_l, train_stats_l = load_data_new(train_data_dir_l, batch_size_l, shuff = False) # labeled data    
     
     if cont:
         VAE, config = ssvae_load(cont_path)
