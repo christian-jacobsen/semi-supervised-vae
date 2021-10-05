@@ -37,11 +37,11 @@ train_data_dir_u = 'data/DarcyFlow/multimodal/kle2_lhs512_bimodal_2.hdf5'   # tr
 train_data_dir_l = 'data/DarcyFlow/multimodal/kle2_mc512_bimodal_2.hdf5'     # testing data directory
 test_data_dir = 'data/DarcyFlow/multimodal/kle2_mc512_bimodal_2.hdf5'     # testing data directory
 
-save_dir = './DarcyFlow/p2/multimodal/ssvae/n{}'.format(n_latent) # specify a folder where all similar models belong. 
+save_dir = './DarcyFlow/p2/multimodal/ssvae/n{}/n_l_study'.format(n_latent) # specify a folder where all similar models belong. 
                                      #    after training, model and configuration will be saved in a subdirectory as a .pth file
 continue_training = False           # specify if training is continued from a saved model
 tr = 2
-continue_path = './DarcyFlow/p2/multimodal/ssvae/n{}/VAE_{}/VAE_{}.pth'.format(n_latent,tr,tr)       # the path to the previously saved model                
+continue_path = './DarcyFlow/p2/multimodal/ssvae/n{}/n_l_study/VAE_{}/VAE_{}.pth'.format(n_latent,tr,tr)       # the path to the previously saved model                
 save_interval = None
 # architecture parameters ---------------------------------------------------------------------------------------------
 

@@ -27,7 +27,7 @@ def ssvae_load(path):
     return VAE, config
 
 def ssvae_train(train_data_dir_u, train_data_dir_l, test_data_dir, save_dir, filename, \
-                       epochs, rec_epochs, batch_size_u, batch_size_l, test_batch_size, \
+                       epochs, rec_epochs, batch_size_u, batch_size_l, n_l, test_batch_size, \
                        wd, beta0, lr_schedule, nu, tau, \
                        data_channels, initial_features, dense_blocks, growth_rate, n_latent, \
                        prior, cont, cont_path):
@@ -63,7 +63,6 @@ def ssvae_train(train_data_dir_u, train_data_dir_l, test_data_dir, save_dir, fil
         
         for n, (_, _, y_u) in enumerate(train_loader_u):
             for m, (z_l, _, y_l) in enumerate(train_loader_l):
-                n_l = 2
                 y_u = y_u.to(device)
                 y_l = y_l.to(device)
                 z_l = z_l.to(device)
@@ -138,6 +137,7 @@ def ssvae_train(train_data_dir_u, train_data_dir_l, test_data_dir, save_dir, fil
               'growth_rate': growth_rate,
               'batch_size_u': batch_size_u,
               'batch_size_l': batch_size_l,
+              'n_l': n_l,
               'test_batch_size': test_batch_size,
               'optimizer': optimizer,
               'prior': prior,
