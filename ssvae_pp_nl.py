@@ -38,7 +38,7 @@ kle = 2
 ntrain = 512
 ntest = 512
 
-trials = np.arange(0, 20)
+trials = np.arange(0, 10)
 dis_v = np.zeros(np.shape(trials))
 lreg_v = dis_v + 0.
 lrec_v = dis_v + 0.
