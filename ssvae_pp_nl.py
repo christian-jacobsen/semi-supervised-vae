@@ -264,10 +264,10 @@ for trial in trials:
     '''
     counto += 1
 
-plt.figure(301)
+plt.figure(301, figsize=(10,10))
 plt.semilogx(nl_v/512, dis_v, 'g')
-plt.xlabel(r'$\frac{n_l}{n_u}$')
-plt.ylabel('$S_D$')
+plt.xlabel(r'$\frac{n_l}{n_u}$', fontsize=16)
+plt.ylabel('$S_D$', fontsize=16)
 plt.savefig('./DarcyFlow/p2/multimodal/ssvae/n2/n_l_study/dis_nl.png')
 
 plt.figure(302)
