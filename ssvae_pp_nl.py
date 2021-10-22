@@ -265,7 +265,9 @@ for trial in trials:
     counto += 1
 
 plt.figure(301)
-plt.semilogx(nl_v, dis_v, 'g')
+plt.semilogx(nl_v/512, dis_v, 'g')
+plt.xlabel(r'$\frac{n_l}{n_u}$')
+plt.ylabel('$S_D$')
 plt.savefig('./DarcyFlow/p2/multimodal/ssvae/n2/n_l_study/dis_nl.png')
 
 plt.figure(302)
