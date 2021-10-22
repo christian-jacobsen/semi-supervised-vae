@@ -264,7 +264,7 @@ for trial in trials:
     '''
     counto += 1
 
-plt.figure(301, figsize=(7, 7))
+plt.figure(301, figsize=(7, 5))
 plt.semilogx(nl_v/512, dis_v, 'g')
 plt.xlabel(r'$\frac{n_l}{n_u}$', fontsize=16)
 plt.ylabel('$S_D$', fontsize=16)
