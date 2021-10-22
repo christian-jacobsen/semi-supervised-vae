@@ -266,7 +266,7 @@ for trial in trials:
 
 plt.figure(301, figsize=(7, 5.5))
 plt.semilogx(nl_v/512, dis_v, 'g')
-plt.xlabel(r'$\frac{n_l}{n_u}$', fontsize=16)
+plt.xlabel(r'$n_l/n_u$', fontsize=16)
 plt.ylabel('$S_D$', fontsize=16)
 plt.savefig('./DarcyFlow/p2/multimodal/ssvae/n2/n_l_study/dis_nl.png')
 
