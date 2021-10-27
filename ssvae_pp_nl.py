@@ -38,13 +38,17 @@ kle = 2
 ntrain = 512
 ntest = 512
 
-trials = np.arange(0, 10)
-dis_v = np.zeros(np.shape(trials))
+ntrials = 10
+nruns = 3
+trials = np.arange(0, 30)
+
+dis_v = np.zeros((nruns,ntrials))
 lreg_v = dis_v + 0.
 lrec_v = dis_v + 0.
 lss_v = dis_v + 0.
 nl_v = dis_v + 0.
 counto = 0
+ri = 0
 for trial in trials:
     plt.close('all')
     load_path = './DarcyFlow/p2/multimodal/ssvae/n2/n_l_study/VAE_{}'.format(trial)
@@ -60,11 +64,11 @@ for trial in trials:
 
     VAE, loss_reg, loss_rec, loss_ss, beta, config = ssvae_load(os.path.join(load_path, model_name))
 
-    dis_v[counto] = config['dis_score']
-    lreg_v[counto] = loss_reg[-1]
-    lrec_v[counto] = loss_rec[-1]
-    lss_v[counto] = loss_ss[-1]
-    nl_v[counto] = config['n_l']
+    dis_v[ri,counto] = config['dis_score']
+    lreg_v[ri,counto] = loss_reg[-1]
+    lrec_v[ri,counto] = loss_rec[-1]
+    lss_v[ri,counto] = loss_ss[-1]
+    nl_v[ri,counto] = config['n_l']
 
     print('Loss: ', loss_reg[-1] + loss_rec[-1])
 
@@ -262,18 +266,31 @@ for trial in trials:
     ax.scatter3D(z[:,0], z[:,1], z[:,2], c='k')
 
     '''
-    counto += 1
-
+    if (trial+1) % 10 == 0:
+        counto=0
+        ri += 1
+    else:
+        counto += 1
+nl_v = nl_v[0,:]
+print(np.shape(nl_v))
+print(np.shape(dis_v))
+print(np.shape(np.amin(dis_v,axis=0)))
 plt.figure(301, figsize=(7, 5.5))
-plt.semilogx(nl_v/512, dis_v, 'g')
+plt.semilogx(nl_v/512, np.mean(dis_v,axis=0), 'g', label='Mean')
+plt.fill_between(nl_v/512, np.amin(dis_v,axis=0), np.amax(dis_v,axis=0),color='g', linestyle = '--', alpha = 0.2, label='Range')
+#plt.plot(nl_v/512, np.amax(dis_v,axis=0), 'g--')
 plt.xlabel(r'$n_l$/$n_u$', fontsize=16)
 plt.ylabel('$S_D$', fontsize=16)
+plt.legend()
 plt.savefig('./DarcyFlow/p2/multimodal/ssvae/n2/n_l_study/dis_nl.png')
 
 plt.figure(302)
-plt.semilogx(nl_v, lreg_v, 'r', label = r'L_{REG}')
-plt.plot(nl_v, lrec_v, 'b', label = r'L_{REC}')
-plt.plot(nl_v, lss_v, 'c', label=r'L_{SS}')
+plt.semilogx(nl_v, np.mean(lreg_v,axis=0), 'r', label = r'L_{REG}')
+plt.fill_between(nl_v, np.amin(lreg_v,axis=0), np.amax(lreg_v,axis=0),color='r',linestyle='--',alpha=0.2)
+plt.plot(nl_v, np.mean(lrec_v,axis=0), 'b', label = r'L_{REC}')
+plt.fill_between(nl_v, np.amin(lrec_v,axis=0), np.amax(lrec_v,axis=0),color='b',linestyle='--',alpha=0.2)
+plt.plot(nl_v, np.mean(lss_v,axis=0), 'c', label=r'L_{SS}')
+plt.fill_between(nl_v, np.amin(lss_v,axis=0), np.amax(lss_v,axis=0),color='c',linestyle='--',alpha=0.2)
 plt.legend()
 plt.savefig('./DarcyFlow/p2/multimodal/ssvae/n2/n_l_study/losses_nl.png')
 

@@ -16,7 +16,7 @@ import numpy as np
 if __name__ == '__main__':
     
     start = time.time()
-    n_l_v = [1, 2, 4, 8, 16, 32, 64, 128, 256, 512] 
+    n_l_v = [16]#[1, 2, 4, 8, 16, 32, 64, 128, 256, 512] 
     save_dir0 = save_dir    
     for n_l in n_l_v:
         if not os.path.exists(save_dir):
