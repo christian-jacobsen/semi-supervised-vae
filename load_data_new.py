@@ -22,7 +22,6 @@ def load_data_new(data_dir, batch_size, shuff = True):
         y_data = f['output'][()]
         
     
-    np.random.seed(201)
     nd = np.shape(z_data)[0]
     perm = np.random.permutation(nd)
     z_data = z_data[perm,:]

@@ -39,8 +39,8 @@ ntrain = 512
 ntest = 512
 
 ntrials = 10
-nruns = 3
-trials = np.arange(0, 30)
+nruns = 5
+trials = np.arange(0, 50)
 
 dis_v = np.zeros((nruns,ntrials))
 lreg_v = dis_v + 0.
