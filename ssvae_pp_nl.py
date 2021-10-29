@@ -69,6 +69,7 @@ for trial in trials:
     lrec_v[ri,counto] = loss_rec[-1]
     lss_v[ri,counto] = loss_ss[-1]
     nl_v[ri,counto] = config['n_l']
+    nl_now = config['n_l']
 
     print('Loss: ', loss_reg[-1] + loss_rec[-1])
 
@@ -166,10 +167,12 @@ for trial in trials:
             if (i == 0) & (j==kle-1):
                 plt.plot(g[:,j], zmu[:,i].detach().numpy(), 'k.', markersize = 1, label = 'Train Data')
                 plt.plot(g_test[:,j],zmu_test[:,i].detach().numpy(),'r.', markersize = 1, label = 'Test Data')
+                plt.plot(g_test[:nl_now,j],zmu_test[:nl_now,i].detach().numpy(),'b.',markersize=10,label='Labeled Data')
                 plt.legend(prop={"size":14}, markerscale = 3.)
             else:
                 plt.plot(g[:,j], zmu[:,i].detach().numpy(), 'k.', markersize = 1)
                 plt.plot(g_test[:,j],zmu_test[:,i].detach().numpy(),'r.', markersize = 1)
+                plt.plot(g_test[:nl_now,j],zmu_test[:nl_now,i].detach().numpy(),'b.',markersize=10)
             
     ztest = zmu.detach().numpy()
 
